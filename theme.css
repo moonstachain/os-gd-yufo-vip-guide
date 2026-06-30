@@ -1,0 +1,98 @@
+/* ============================================================
+   玉佛禅寺 · 智慧供灯供佛功德系统
+   共享设计系统 —— 墨蓝 · 沉金 · 米白
+   ============================================================ */
+
+@import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+:root {
+  /* ---- 墨蓝 / Ink ---- */
+  --ink-950: #0c1320;
+  --ink-900: #0f1828;
+  --ink-850: #131f33;
+  --ink-800: #16223a;
+  --ink-700: #1c2c49;
+  --ink-600: #243558;
+  --ink-500: #324669;
+  --ink-400: #4a5e83;
+  --ink-300: #6b7d9e;
+
+  /* ---- 沉金 / Gold ---- */
+  --gold-700: #8a6d3b;
+  --gold-600: #a8863b;
+  --gold-500: #c8a44d;
+  --gold-400: #d8b863;
+  --gold-300: #e6cd8a;
+  --gold-200: #f0e0b6;
+
+  /* ---- 米白 / Paper ---- */
+  --paper-50:  #faf6ec;
+  --paper-100: #f4ecd8;
+  --paper-200: #e9dec5;
+  --paper-300: #d9c9a8;
+  --paper-400: #c2ac86;
+
+  /* ---- 点缀 / Accents（同色域，仅变 hue）---- */
+  --jade:     oklch(0.52 0.06 155);   /* 供奉中 · 安康 */
+  --jade-dim: oklch(0.62 0.05 155);
+  --cinnabar: oklch(0.55 0.12 35);    /* 到期预警 · 朱 */
+  --cinnabar-dim: oklch(0.66 0.10 35);
+  --lotus:    oklch(0.66 0.07 20);
+
+  /* ---- 语义 ---- */
+  --bg:        var(--ink-800);
+  --surface:   var(--paper-50);
+  --ink-text:  var(--ink-900);
+  --gold:      var(--gold-500);
+  --hairline:  color-mix(in oklab, var(--gold-500) 38%, transparent);
+  --hairline-strong: color-mix(in oklab, var(--gold-500) 60%, transparent);
+
+  /* ---- 字体 ---- */
+  --serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --kai:   "Kaiti SC", "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  --num:   "Cormorant Garamond", "Noto Serif SC", serif;
+
+  /* ---- 节奏 ---- */
+  --r-sm: 4px;  --r-md: 8px;  --r-lg: 14px;  --r-xl: 22px;
+  --shadow-soft: 0 2px 8px rgba(12,19,32,0.06), 0 12px 40px rgba(12,19,32,0.08);
+  --shadow-card: 0 1px 2px rgba(12,19,32,0.05), 0 8px 30px rgba(12,19,32,0.07);
+  --shadow-deep: 0 30px 80px rgba(8,12,22,0.45);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0.1, 0.2, 1);
+}
+
+* { box-sizing: border-box; }
+
+/* ---- 纸纹理：极淡的 turbulence 噪点（非手绘图样）---- */
+.paper-grain::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.04; mix-blend-mode: multiply; border-radius: inherit;
+}
+
+/* ---- 沉金描边 ---- */
+.gold-rule { height: 1px; background: linear-gradient(90deg, transparent, var(--gold-500), transparent); }
+.gold-frame { border: 1px solid var(--hairline); }
+
+/* ---- 光晕：供灯之光（仅径向渐变，无手绘）---- */
+.lamp-glow {
+  background:
+    radial-gradient(closest-side, color-mix(in oklab, var(--gold-300) 90%, transparent), transparent 70%);
+}
+
+/* ---- 数字 ---- */
+.num { font-family: var(--num); font-variant-numeric: tabular-nums lining-nums; letter-spacing: 0.01em; }
+
+/* ---- 滚动条 ---- */
+.thin-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: color-mix(in oklab, var(--ink-400) 40%, transparent); border-radius: 99px; }
+.thin-scroll::-webkit-scrollbar-track { background: transparent; }
+
+/* ---- 焦点可达性 ---- */
+:focus-visible { outline: 2px solid var(--gold-400); outline-offset: 2px; }
+
+@keyframes fadeRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes glowPulse { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
+@keyframes haloExpand { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }

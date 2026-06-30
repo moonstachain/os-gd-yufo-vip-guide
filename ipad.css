@@ -1,0 +1,139 @@
+/* ============================================================
+   iPad 贵宾接待引导屏 —— 专用样式
+   ============================================================ */
+
+html, body { margin: 0; height: 100%; background: #06090f; }
+body { font-family: var(--serif); color: var(--ink-text); -webkit-font-smoothing: antialiased; }
+
+/* ---- 舞台与设备 ---- */
+.stage {
+  position: fixed; inset: 0; display: grid; place-items: center; overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% -10%, #142036 0%, #0a0f1a 55%, #05080e 100%);
+}
+.bezel {
+  position: relative; width: 1194px; height: 834px; border-radius: 34px;
+  padding: 13px; background: linear-gradient(160deg, #20242c, #0c0e12 60%, #16181d);
+  box-shadow: var(--shadow-deep), inset 0 0 0 1.5px rgba(255,255,255,0.05);
+  transform-origin: center center;
+}
+.screen {
+  position: relative; width: 100%; height: 100%; border-radius: 22px; overflow: hidden;
+  background: radial-gradient(140% 100% at 50% -20%, #1d2c49 0%, #16223a 50%, #101a2d 100%);
+  color: var(--paper-100); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.5);
+}
+.cam { position: absolute; top: 50%; left: 5px; width: 6px; height: 6px; border-radius: 50%;
+  background: #05070b; transform: translateY(-50%); box-shadow: inset 0 0 0 1px #2a2d33; z-index: 5; }
+
+/* ---- 屏面：墨蓝仪式底 ---- */
+.scene {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  background: transparent; color: var(--paper-100);
+}
+.scene-paper {
+  background:
+    radial-gradient(120% 90% at 50% 0%, #fbf8f0, #f4ecd8 60%, #ece0c6 100%);
+  color: var(--ink-text);
+}
+
+/* ---- 顶部陈设 ---- */
+.furniture {
+  position: relative; z-index: 4; display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 26px 12px; flex: 0 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 11px; }
+.seal {
+  width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+  border: 1.5px solid var(--gold-500); color: var(--gold-300);
+  font-family: var(--kai); font-size: 21px; line-height: 1; position: relative;
+  box-shadow: inset 0 0 0 3px rgba(200,164,77,0.12);
+}
+.seal.on-paper { border-color: var(--gold-600); color: var(--gold-700); }
+.brand-tt { display: flex; flex-direction: column; gap: 1px; }
+.brand-tt b { font-weight: 600; font-size: 15px; letter-spacing: 0.14em; }
+.brand-tt span { font-size: 10.5px; letter-spacing: 0.34em; opacity: 0.6; }
+.on-paper .brand-tt b, .scene-paper .brand-tt b { color: var(--ink-800); }
+
+/* 七幕进度 */
+.acts { display: flex; align-items: center; gap: 0; }
+.act { display: flex; align-items: center; gap: 9px; font-size: 11px; letter-spacing: 0.18em; }
+.act + .act::before { content: ""; width: 26px; height: 1px; margin: 0 9px;
+  background: color-mix(in oklab, currentColor 30%, transparent); }
+.act-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid currentColor; opacity: 0.45; }
+.act.done { color: var(--gold-300); } .act.done .act-dot { background: var(--gold-400); border-color: var(--gold-400); opacity: 1; }
+.act.now { color: var(--gold-200); } .act.now .act-dot { background: var(--gold-200); border-color: var(--gold-200); opacity: 1; box-shadow: 0 0 0 4px rgba(240,224,182,0.18); }
+.act.todo { color: var(--paper-100); opacity: 0.4; }
+.scene-paper .act.todo, .scene-paper .act { color: var(--ink-500); }
+.scene-paper .act.done { color: var(--gold-700); } .scene-paper .act.now { color: var(--gold-600); }
+
+.crumb-right { display: flex; align-items: center; gap: 14px; }
+.kt-chip { display: flex; align-items: center; gap: 8px; padding: 5px 12px 5px 6px; border-radius: 99px;
+  border: 1px solid var(--hairline); font-size: 12px; }
+.kt-ava { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--ink-600); color: var(--gold-200); font-size: 12px; font-family: var(--kai); }
+.scene-paper .kt-ava { background: var(--paper-300); color: var(--ink-800); }
+.clock { font-family: var(--num); font-size: 15px; opacity: 0.7; letter-spacing: 0.04em; }
+
+/* ---- 操作面切换 ---- */
+.face-toggle { display: flex; border: 1px solid var(--hairline); border-radius: 99px; overflow: hidden; font-size: 11px; }
+.face-toggle button { background: none; border: 0; color: inherit; font-family: var(--serif);
+  padding: 5px 12px; cursor: pointer; opacity: 0.55; letter-spacing: 0.1em; }
+.face-toggle button.active { background: var(--gold-500); color: var(--ink-900); opacity: 1; font-weight: 600; }
+
+/* ---- 内容体 ---- */
+.body { position: relative; z-index: 2; flex: 1 1 auto; min-height: 0; display: flex; }
+.actions {
+  position: relative; z-index: 4; flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 30px 22px; gap: 16px;
+}
+
+/* ---- 按钮 ---- */
+.btn { font-family: var(--serif); cursor: pointer; border-radius: 99px; border: 1px solid transparent;
+  font-size: 15px; letter-spacing: 0.14em; padding: 13px 30px; transition: all .25s var(--ease);
+  display: inline-flex; align-items: center; gap: 10px; }
+.btn-gold { background: linear-gradient(180deg, var(--gold-400), var(--gold-600)); color: #2a200c;
+  font-weight: 600; box-shadow: 0 8px 24px rgba(168,134,59,0.32); }
+.btn-gold:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.btn-ghost { border-color: var(--hairline); color: currentColor; background: transparent; opacity: 0.85; }
+.btn-ghost:hover { border-color: var(--hairline-strong); opacity: 1; }
+.btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-text { background: none; border: 0; color: inherit; cursor: pointer; font-family: var(--serif);
+  font-size: 13px; letter-spacing: 0.1em; opacity: 0.6; display: inline-flex; align-items: center; gap: 6px; }
+.btn-text:hover { opacity: 1; color: var(--gold-300); }
+.scene-paper .btn-text:hover { color: var(--gold-700); }
+
+/* ---- 卡片 ---- */
+.card { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow-card);
+  border: 1px solid rgba(255,255,255,0.5); position: relative; }
+.card-dim { background: color-mix(in oklab, var(--ink-700) 92%, var(--gold-500)); border: 1px solid var(--hairline);
+  border-radius: var(--r-lg); }
+
+/* ---- 输入 ---- */
+.field { background: rgba(255,255,255,0.06); border: 1px solid var(--hairline); border-radius: var(--r-md);
+  color: inherit; font-family: var(--serif); font-size: 16px; padding: 14px 16px; width: 100%; }
+.field::placeholder { color: currentColor; opacity: 0.4; }
+.field:focus { border-color: var(--gold-400); background: rgba(255,255,255,0.1); outline: none; }
+.scene-paper .field { background: rgba(255,255,255,0.6); border-color: var(--hairline); }
+
+/* ---- 标签/印记 ---- */
+.label { font-size: 11px; letter-spacing: 0.3em; text-transform: none; opacity: 0.55; }
+.kicker { font-family: var(--kai); font-size: 13px; letter-spacing: 0.4em; color: var(--gold-400); }
+.scene-paper .kicker { color: var(--gold-600); }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 4px 11px; border-radius: 99px;
+  border: 1px solid var(--hairline); letter-spacing: 0.08em; }
+.pill.jade { color: var(--jade-dim); border-color: color-mix(in oklab, var(--jade) 45%, transparent); }
+.pill.warn { color: var(--cinnabar-dim); border-color: color-mix(in oklab, var(--cinnabar) 45%, transparent); }
+.pill.gold { color: var(--gold-300); border-color: var(--hairline-strong); }
+.scene-paper .pill.gold { color: var(--gold-700); }
+
+/* 操作面抽屉 */
+.op-drawer { position: absolute; top: 0; right: 0; bottom: 0; width: 360px; z-index: 30;
+  background: linear-gradient(180deg, #11192b, #0d1422); border-left: 1px solid var(--hairline-strong);
+  box-shadow: -30px 0 80px rgba(0,0,0,0.5); transform: translateX(100%); transition: transform .4s var(--ease);
+  display: flex; flex-direction: column; color: var(--paper-100); }
+.op-drawer.open { transform: none; }
+.op-scrim { position: absolute; inset: 0; z-index: 25; background: rgba(6,9,15,0.35); opacity: 0; pointer-events: none; transition: opacity .35s; }
+.op-scrim.open { opacity: 1; pointer-events: auto; }
+
+.fade-rise { animation: fadeRise .7s var(--ease) both; }
+.fade-in { animation: fadeIn .8s var(--ease) both; }
