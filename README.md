@@ -1,3 +1,7 @@
+> ⚠️ **ARCHIVED(2026-07-27 · 仓库治理归档行动)**
+> 归档原因:一次性任务完成/超14天未动。继任仓:无(客户交付已完成)。
+> 本仓只读保留作历史证据;如需恢复请联系仓主 unarchive。
+
 # os-gd-yufo-vip-guide
 
 Public static snapshot for the live site:
